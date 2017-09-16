@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back"
+    tools:context="com.example.naveedanwar.chatapp.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/crib" />
+
+    <TextView
+        android:id="@+id/dpname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        android:text="Display name"
+        android:layout_below="@+id/dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/dpstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dpname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:text="Your Status"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/dpcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="friend count"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_above="@+id/sendbtn"
+        android:layout_alignStart="@+id/dpstatus" />
+
+    <Button
+        android:id="@+id/sendbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:textColor="#fafafa"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="Send Friend Request"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/declinebtn"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/declinebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="#fafafa"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="Decline Friend Request"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/sendbtn" />
+</RelativeLayout>

@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "997811568329",
+    "firebase_url": "https://chatapp-671cf.firebaseio.com",
+    "project_id": "chatapp-671cf",
+    "storage_bucket": "chatapp-671cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997811568329:android:a2585b327a91c685",
+        "android_client_info": {
+          "package_name": "com.example.naveedanwar.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997811568329-51r0ef8bdqsclnjk2t2at97il777kj03.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.naveedanwar.chatapp",
+            "certificate_hash": "6203b84b64d5aadf5c18711932cbc073f75436e1"
+          }
+        },
+        {
+          "client_id": "997811568329-l8v70jdunuc6qdcopp06u5157mijl1so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQX9XO7VzgzWy2jcLUjLuRg-IvtD8_mnk"
+        },
+        {
+          "current_key": "AIzaSyB-WBr88L3OnRX0zVlJcxey7F2Mn0VeSrg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997811568329-l8v70jdunuc6qdcopp06u5157mijl1so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
