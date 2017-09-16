@@ -5,9 +5,9 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/urimage"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="34dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="14dp"
         android:src="@drawable/crib"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -22,7 +22,7 @@
         android:layout_toEndOf="@+id/urimage"
         android:text="Display name"
         android:textColor="@color/cast_expanded_controller_background_color"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/urstatus"

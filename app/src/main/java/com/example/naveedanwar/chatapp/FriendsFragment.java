@@ -1,6 +1,7 @@
 package com.example.naveedanwar.chatapp;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,8 +14,11 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,9 +31,10 @@ public class FriendsFragment extends Fragment {
 
     private Toolbar toolbar;
     public RecyclerView mList;     // 1
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference,allFriendsReference;
     private final static int user =1;
     private FirebaseAuth mAuth;
+
     public FriendsFragment() {
         // Required empty public constructor
     }
@@ -45,6 +50,8 @@ public class FriendsFragment extends Fragment {
         mList.setLayoutManager(new LinearLayoutManager(getContext()));
         mAuth= FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Friends").child(mAuth.getCurrentUser().getUid());
+        allFriendsReference = FirebaseDatabase.getInstance().getReference().child("Users");
+
         return view;
     }
 
@@ -60,8 +67,22 @@ public class FriendsFragment extends Fragment {
 
         ) {
             @Override
-            protected void populateViewHolder(UserViewHolder viewHolder, Friends model, int position) {
+            protected void populateViewHolder(final UserViewHolder viewHolder, Friends model, int position) {
                 //viewHolder.setDate(model.getDate());
+                allFriendsReference.child(getRef(position).getKey()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        viewHolder.setName(dataSnapshot.child("username").getValue().toString());
+                        viewHolder.setStatus(dataSnapshot.child("status").getValue().toString());
+                        viewHolder.setImage(dataSnapshot.child("thumbnail_image").getValue().toString(),getContext());
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         };
         mList.setAdapter(firebaseRecyclerAdapter);
@@ -70,16 +91,34 @@ public class FriendsFragment extends Fragment {
 
     public static class UserViewHolder extends RecyclerView.ViewHolder{
         View mView;
+        private TextView name;
+        private TextView status;
+        private CircleImageView images;
+
         public UserViewHolder(View itemView) {
             super(itemView);
             mView =  itemView;
         }
         public void setDate(String date){
 
-            TextView name = (TextView)mView.findViewById(R.id.urstatus);
-            name.setText(date);
+            //TextView name = (TextView)mView.findViewById(R.id.urstatus);
+            //name.setText(date);
         }
 
+        public void setName(String dbname){
+            name = (TextView)mView.findViewById(R.id.urname);
+            name.setText(dbname);
+        }
+        public void setStatus(String dbstatus){
+
+            status = (TextView)mView.findViewById(R.id.urstatus);
+            status.setText(dbstatus);
+
+        }
+        public void setImage(String dbimage, Context context){
+            images = (CircleImageView)mView.findViewById(R.id.urimage);
+            Picasso.with(context).load(dbimage).placeholder(R.drawable.crib).into(images);
+        }
 
     }
 
