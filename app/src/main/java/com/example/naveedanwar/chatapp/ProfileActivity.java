@@ -32,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     private TextView name , status, count;
-    private ImageView imageView;
+    private ImageView imageView,online;
     private Button sendFriendRequest;
     String uid;
     private DatabaseReference databaseReference , requestReference , friendReference,notificationReference;
@@ -49,6 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
         status = (TextView)findViewById(R.id.dpstatus);
         count = (TextView)findViewById(R.id.dpcount);
         imageView = (ImageView)findViewById(R.id.dp);
+        online = (ImageView)findViewById(R.id.online);
+        online.setVisibility(View.INVISIBLE);
       //  Typeface face= Typeface.createFromAsset(getAssets(), "fonts/Pacifico-Regular.ttf");
        // name.setTypeface(face);
         sendbtn = (Button)findViewById(R.id.sendbtn);
@@ -70,6 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
                 name.setText(dataSnapshot.child("username").getValue().toString());
                 status.setText(dataSnapshot.child("status").getValue().toString());
                 String uri = dataSnapshot.child("image").getValue().toString();
+
                 Picasso.with(ProfileActivity.this).load(uri).placeholder(R.drawable.crib).into(imageView);
                 pg.dismiss();
 

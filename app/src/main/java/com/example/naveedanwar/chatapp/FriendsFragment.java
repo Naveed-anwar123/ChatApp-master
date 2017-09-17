@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -28,7 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * A simple {@link Fragment} subclass.
  */
 public class FriendsFragment extends Fragment {
-
+    private ImageView online;
     private Toolbar toolbar;
     public RecyclerView mList;     // 1
     private DatabaseReference databaseReference,allFriendsReference;
@@ -51,6 +52,7 @@ public class FriendsFragment extends Fragment {
         mAuth= FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Friends").child(mAuth.getCurrentUser().getUid());
         allFriendsReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        online = (ImageView)view.findViewById(R.id.online);
 
         return view;
     }
