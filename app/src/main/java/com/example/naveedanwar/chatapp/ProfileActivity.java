@@ -49,10 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
         status = (TextView)findViewById(R.id.dpstatus);
         count = (TextView)findViewById(R.id.dpcount);
         imageView = (ImageView)findViewById(R.id.dp);
-        online = (ImageView)findViewById(R.id.online);
-        online.setVisibility(View.INVISIBLE);
-      //  Typeface face= Typeface.createFromAsset(getAssets(), "fonts/Pacifico-Regular.ttf");
-       // name.setTypeface(face);
+        //  Typeface face= Typeface.createFromAsset(getAssets(), "fonts/Pacifico-Regular.ttf");
+        // name.setTypeface(face);
         sendbtn = (Button)findViewById(R.id.sendbtn);
         declinebtn = (Button)findViewById(R.id.declinebtn);
         current_status = "not_friends";
@@ -94,29 +92,28 @@ public class ProfileActivity extends AppCompatActivity {
                                 declinebtn.setVisibility(View.INVISIBLE);
                                 declinebtn.setEnabled(false);
                             }
-                            else{
-                                friendReference.child(mAuth.getCurrentUser().getUid()).child(uid).addValueEventListener(new ValueEventListener() {
 
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        Toast.makeText(ProfileActivity.this,"works",Toast.LENGTH_LONG).show();
-                                        //if(dataSnapshot.hasChild(uid)){
-                                        current_status = "now_friends";
-                                        sendbtn.setText("Unfriend this Person");
-                                        declinebtn.setVisibility(View.INVISIBLE);
-                                        declinebtn.setEnabled(false);
-                                        //}
-                                    }
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-
-                                    }
-                                });
-                            }
                         }
 
                     }
 
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                friendReference.child(mAuth.getCurrentUser().getUid()).child(uid).addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Toast.makeText(ProfileActivity.this,"works",Toast.LENGTH_LONG).show();
+                        //if(dataSnapshot.hasChild(uid)){
+                        current_status = "now_friends";
+                        sendbtn.setText("Unfriend this Person");
+                        declinebtn.setVisibility(View.INVISIBLE);
+                        declinebtn.setEnabled(false);
+                        //}
+                    }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 

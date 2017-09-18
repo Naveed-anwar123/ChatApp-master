@@ -2,8 +2,11 @@ package com.example.naveedanwar.chatapp;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,6 +74,7 @@ public class FriendsFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(final UserViewHolder viewHolder, Friends model, int position) {
+                final String str = getRef(position).getKey().toString();
                 //viewHolder.setDate(model.getDate());
                 allFriendsReference.child(getRef(position).getKey()).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -85,7 +90,34 @@ public class FriendsFragment extends Fragment {
 
                     }
                 });
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence charSequence[]=new CharSequence[]{"Open Profile","Send Message"};
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setTitle("Select Option");
+                        builder.setItems(charSequence, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if(i==0){
+                                    Intent intent = new Intent(getContext(),ProfileActivity.class);
+                                    intent.putExtra("user_id",str);
+                                    startActivityForResult(intent,user);
+                                }
+                                else{
+                                    Intent intent = new Intent(getContext(),ChatActivity.class);
+                                    intent.putExtra("user_id",str);
+                                    startActivityForResult(intent,user);
+                                }
+
+                            }
+                        });
+                        builder.show();
+                    }
+                });
             }
+
+
         };
         mList.setAdapter(firebaseRecyclerAdapter);
 

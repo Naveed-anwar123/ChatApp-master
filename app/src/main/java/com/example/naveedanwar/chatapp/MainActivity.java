@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        databaseReference.child("online").setValue(false);
+       // databaseReference.child("online").setValue(false);
     }
 
     @Override

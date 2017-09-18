@@ -32,7 +32,7 @@ public class ChatApp extends Application {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                     if(dataSnapshot!=null){
-                        databaseReference.child("onine").onDisconnect().setValue(false);
+                        databaseReference.child("online").onDisconnect().setValue(false);
                     }
             }
 
